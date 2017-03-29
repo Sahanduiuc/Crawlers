@@ -1,0 +1,6 @@
+scorecard,symbol
+"[0, 0, 71, 25, 69, 29, 69, 30]",fccy
+"[0, 0, 36, 25, 29, 29, 23, 50]",pih
+contrarian,growth_slash_value1,growth_slash_value2,momentum_strategy,p_slash_e,price_slash_sales,scorecard,small_cap_growth,symbol,value
+21,50,46,50,91,90,"[91, 29, 50, 50, 16, 21, 46, 90]",16,flws,29
+29,25,23,36,0,50,"[0, 0, 36, 25, 29, 29, 23, 50]",29,pih,0
