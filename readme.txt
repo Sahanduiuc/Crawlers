@@ -24,4 +24,9 @@ scrapy crawl guru -o guru1.csv -a n_stock=100
 About proxiesCrawler
 scrapy crawl hidemy -o proxies1.csv
 
-
+About git
+git clone https://jerryxyx/Crawlers.git
+git add .
+git commit -m "commit"
+git push origin master
+git pull origin master
