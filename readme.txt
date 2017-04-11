@@ -11,6 +11,13 @@ scrapy list
 scrapy fetch url
 scrapy shell url
 
+About selector
+response.xpath("//div/td[@class="hh"]/text()").re('\d+\.\d+")
+
+About conda
+conda info -e
+source activate py36
+
 About nsdq
 scrapy crawl guru -o guru1.csv -a n_stock=100
 

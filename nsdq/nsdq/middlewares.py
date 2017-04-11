@@ -94,23 +94,23 @@ class RandomProxy(object):
     def process_request(self, request, spider):
         # Don't overwrite with a random one (server-side state for IP)
 
+        #retry! and delete the false proxy
         if 'proxy' in request.meta:
-            if request.meta["exception"] is False:
-                log.info("proxy:"+request.meta['proxy'])
-                log.info("url:"+request.url)
-                if self.mode == Mode.RANDOMIZE_PROXY_EVERY_REQUESTS or self.mode == Mode.RANDOMIZE_PROXY_ONCE:
-                    proxy = request.meta['proxy']
-                    try:
-                        del self.proxies[proxy]
-                    except KeyError:
-                        pass
-                    #request.meta["exception"] = True
-                    if self.mode == Mode.RANDOMIZE_PROXY_ONCE:
-                        self.chosen_proxy = random.choice(list(self.proxies.keys()))
-                    log.info('Removing failed proxy <%s>, %d proxies left' % (
-                        proxy, len(self.proxies)))
+            #if request.meta["exception"] is False:
+            log.info("proxy:"+request.meta['proxy'])
+            log.info("url:"+request.url)
+            if self.mode == Mode.RANDOMIZE_PROXY_EVERY_REQUESTS or self.mode == Mode.RANDOMIZE_PROXY_ONCE:
+                proxy = request.meta['proxy']
+                try:
+                    del self.proxies[proxy]
+                except KeyError:
+                    pass
+                #request.meta["exception"] = True
+                if self.mode == Mode.RANDOMIZE_PROXY_ONCE:
+                    self.chosen_proxy = random.choice(list(self.proxies.keys()))
+                log.info('Removing failed proxy <%s>, %d proxies left' % (proxy, len(self.proxies)))
                 # return
-        request.meta["exception"] = False
+        #request.meta["exception"] = False
         if len(self.proxies) == 0:
             raise ValueError('All proxies are unusable, cannot proceed')
 
@@ -131,8 +131,7 @@ class RandomProxy(object):
             request.meta['proxy'] = proxy_address
             #log.info(request.meta['proxy']+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
-        log.debug('Using proxy <%s>, %d proxies left' % (
-                proxy_address, len(self.proxies)))
+        #log.debug('Using proxy <%s>, %d proxies left' % (proxy_address, len(self.proxies)))
 
     def process_exception(self, request, exception, spider):
         log.info("Proxy exception********************************************")

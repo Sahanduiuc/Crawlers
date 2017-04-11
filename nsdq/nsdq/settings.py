@@ -23,7 +23,7 @@ AGENT_LIST = "/Users/xiayuxuan/PythonInFinance/Crawlers/Proxies and Agents/agent
 DOWNLOAD_TIMEOUT=2
 DNS_TIMEOUT=5
 # Retry many times since proxies often fail
-RETRY_TIMES = 10
+RETRY_TIMES = 50
 # Retry on most error codes since proxies fail for different reasons
 RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
 
