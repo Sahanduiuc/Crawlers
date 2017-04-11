@@ -93,9 +93,23 @@ class RandomProxy(object):
 
     def process_request(self, request, spider):
         # Don't overwrite with a random one (server-side state for IP)
+
         if 'proxy' in request.meta:
             if request.meta["exception"] is False:
-                return
+                log.info("proxy:"+request.meta['proxy'])
+                log.info("url:"+request.url)
+                if self.mode == Mode.RANDOMIZE_PROXY_EVERY_REQUESTS or self.mode == Mode.RANDOMIZE_PROXY_ONCE:
+                    proxy = request.meta['proxy']
+                    try:
+                        del self.proxies[proxy]
+                    except KeyError:
+                        pass
+                    #request.meta["exception"] = True
+                    if self.mode == Mode.RANDOMIZE_PROXY_ONCE:
+                        self.chosen_proxy = random.choice(list(self.proxies.keys()))
+                    log.info('Removing failed proxy <%s>, %d proxies left' % (
+                        proxy, len(self.proxies)))
+                # return
         request.meta["exception"] = False
         if len(self.proxies) == 0:
             raise ValueError('All proxies are unusable, cannot proceed')
@@ -105,7 +119,6 @@ class RandomProxy(object):
         else:
             proxy_address = self.chosen_proxy
 
-        #log.info("Proxy Address:"+proxy_address+"********************************************")
 
         proxy_user_pass = self.proxies[proxy_address]
 
@@ -116,13 +129,15 @@ class RandomProxy(object):
         else:
             log.debug('Proxy user pass not found')
             request.meta['proxy'] = proxy_address
-            log.info(request.meta['proxy']+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+            #log.info(request.meta['proxy']+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
         log.debug('Using proxy <%s>, %d proxies left' % (
                 proxy_address, len(self.proxies)))
 
     def process_exception(self, request, exception, spider):
+        log.info("Proxy exception********************************************")
         if 'proxy' not in request.meta:
+            log.info("Proxy is not in request.meta********************************************")
             return
         if self.mode == Mode.RANDOMIZE_PROXY_EVERY_REQUESTS or self.mode == Mode.RANDOMIZE_PROXY_ONCE:
             proxy = request.meta['proxy']
@@ -135,6 +150,8 @@ class RandomProxy(object):
                 self.chosen_proxy = random.choice(list(self.proxies.keys()))
             log.info('Removing failed proxy <%s>, %d proxies left' % (
                 proxy, len(self.proxies)))
+            #if self.mode == Mode.RANDOMIZE_PROXY_EVERY_REQUESTS:
+
 
 
 

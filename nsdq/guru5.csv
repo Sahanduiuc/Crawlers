@@ -1,0 +1,5 @@
+contrarian,growth_slash_value1,growth_slash_value2,momentum_strategy,p_slash_e,price_slash_sales,scorecard,small_cap_growth,symbol,value
+36,0,15,7,0,30,"[0, 0, 7, 0, 21, 36, 15, 30]",21,turn,0
+21,50,46,50,91,90,"[91, 29, 50, 50, 43, 21, 46, 90]",43,flws,29
+29,25,23,50,0,50,"[0, 0, 50, 25, 29, 29, 23, 50]",29,pih,0
+21,50,23,0,0,20,"[0, 29, 0, 50, 1, 21, 23, 20]",1,vnet,29

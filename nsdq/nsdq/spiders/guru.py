@@ -19,10 +19,9 @@ class GuruSpider(CrawlSpider):
     #)
 
     def start_requests(self):
-        n_stock = getattr(self, 'n_stock', 2)
-        n_stock=int(n_stock)
+        n_stock = getattr(self, 'n_stock', "10")
         nsdqDF = pd.read_csv("http://www.nasdaq.com/screening/companies-by-industry.aspx?exchange=%s&render=download")
-        urls = nsdqDF.ix[:n_stock, 8]
+        urls = nsdqDF.ix[:int(n_stock), 8]
         # urls=nsdqDF.ix[:2,8]
         for url in urls:
             guru_url = url + "/guru-analysis"
