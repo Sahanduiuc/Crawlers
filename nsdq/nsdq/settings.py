@@ -1,6 +1,6 @@
 COOKIES_ENABLED=False
 DOWNLOAD_DELAY=0
-AGENT_LIST = "/Users/xiayuxuan/PythonInFinance/Crawlers/Proxies and Agents/agent_list.txt"
+AGENT_LIST = "/Users/xiayuxuan/PythonInFinance/Crawlers/resources/agent_list.txt"
 
 # USER_AGENTS = [
 #     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
@@ -20,12 +20,12 @@ AGENT_LIST = "/Users/xiayuxuan/PythonInFinance/Crawlers/Proxies and Agents/agent
 #     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20",
 #     "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
 # ]
-DOWNLOAD_TIMEOUT=2
+DOWNLOAD_TIMEOUT=3
 DNS_TIMEOUT=5
 # Retry many times since proxies often fail
 RETRY_TIMES = 50
 # Retry on most error codes since proxies fail for different reasons
-RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+RETRY_HTTP_CODES = [500, 503, 504, 400, 401, 403, 404, 407, 408]
 
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
@@ -40,7 +40,7 @@ DOWNLOADER_MIDDLEWARES = {
 # http://username:password@host2:port
 # http://host3:port
 # ...
-PROXY_LIST = '/Users/xiayuxuan/PythonInFinance/Crawlers/Proxies and Agents/proxies1.txt'
+PROXY_LIST = '/Users/xiayuxuan/PythonInFinance/Crawlers/resources/proxies-from-hide.csv'
 
 # Proxy mode
 # 0 = Every requests have different proxy

@@ -8,7 +8,7 @@
 import scrapy
 class GuruItem(scrapy.Item):
     symbol=scrapy.Field()
-    scorecard=scrapy.Field()
+    #scorecard=scrapy.Field()
     p_slash_e=scrapy.Field()
     value = scrapy.Field()
     momentum_strategy = scrapy.Field()

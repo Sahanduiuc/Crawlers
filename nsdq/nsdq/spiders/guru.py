@@ -19,10 +19,13 @@ class GuruSpider(CrawlSpider):
     #)
 
     def start_requests(self):
-        n_stock = getattr(self, 'n_stock', "10")
-        nsdqDF = pd.read_csv("http://www.nasdaq.com/screening/companies-by-industry.aspx?exchange=%s&render=download")
-        urls = nsdqDF.ix[:int(n_stock), 8]
-        # urls=nsdqDF.ix[:2,8]
+        n_stock = getattr(self, 'n_stock', "100")
+        #nsdqDF = pd.read_csv("http://www.nasdaq.com/screening/companies-by-industry.aspx?exchange=%s&render=download")
+        #urls = nsdqDF.ix[:int(n_stock), 8]
+
+        nsdqDF = pd.read_csv("/Users/xiayuxuan/PythonInFinance/Crawlers/resources/NASDAQ-100.csv")
+        urls = ["http://www.nasdaq.com/symbol/"+symbol for symbol in nsdqDF.ix[:int(n_stock),0]]
+
         for url in urls:
             guru_url = url + "/guru-analysis"
             yield scrapy.http.Request(url=guru_url, callback=self.parse)
@@ -36,7 +39,7 @@ class GuruSpider(CrawlSpider):
         symbol = response.url.split('/')[-2]
         if(score_list):
 
-            item = GuruItem(symbol=symbol, scorecard=score_list, p_slash_e=score_list[0],value=score_list[1],
+            item = GuruItem(symbol=symbol, p_slash_e=score_list[0],value=score_list[1],
                         momentum_strategy=score_list[2],growth_slash_value1=score_list[3],
                         small_cap_growth=score_list[4],contrarian=score_list[5],
                         growth_slash_value2=score_list[6],price_slash_sales=score_list[7])

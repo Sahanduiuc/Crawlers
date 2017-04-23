@@ -9,18 +9,14 @@ from proxiesCrawler.items import ProxiescrawlerItem
 class QuotesSpider(scrapy.Spider):
     name = "hidemy"
     def start_requests(self):
-        pages = [i * 64 for i in range(1, 12)]
-        urls = [
-            'http://hidemy.name/en/proxy-list/'
-        ]
-        for page in pages:
-            urls.append("http://hidemy.name/en/proxy-list/?start="+str(page)+"#list")
+        pages = [i * 64 for i in range(0, 17)]
+        urls = ["http://hidemy.name/en/proxy-list/?start="+str(startwith) for startwith in pages]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
         address_list = response.xpath("//td[@class='tdl']/text()").extract()
-        ports_list = response.xpath("//tr/td/text()").re('^\d{1,4}$')
+        ports_list = response.xpath("//tr/td/text()").re('^\d{1,5}$')
                 # symbol = response.xpath("//div[@class='qwidget-symbol']/text()").re_first(u'(\w+)\s')
 
         if(len(ports_list)!=len(address_list)):
