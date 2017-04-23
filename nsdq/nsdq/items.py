@@ -9,14 +9,14 @@ import scrapy
 class GuruItem(scrapy.Item):
     symbol=scrapy.Field()
     #scorecard=scrapy.Field()
-    p_slash_e=scrapy.Field()
-    value = scrapy.Field()
-    momentum_strategy = scrapy.Field()
-    growth_slash_value1=scrapy.Field()
-    small_cap_growth=scrapy.Field()
-    contrarian = scrapy.Field()
-    growth_slash_value2=scrapy.Field()
-    price_slash_sales=scrapy.Field()
+    PE_growth_PL=scrapy.Field()
+    value_BG = scrapy.Field()
+    momentum_strategy_V = scrapy.Field()
+    growth_value_JO=scrapy.Field()
+    small_cap_growth_MF=scrapy.Field()
+    contrarian_DD = scrapy.Field()
+    growth_value_MZ=scrapy.Field()
+    price_sale_KF=scrapy.Field()
 
 
 class NsdqItem(scrapy.Item):

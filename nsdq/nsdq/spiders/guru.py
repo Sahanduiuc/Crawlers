@@ -39,10 +39,10 @@ class GuruSpider(CrawlSpider):
         symbol = response.url.split('/')[-2]
         if(score_list):
 
-            item = GuruItem(symbol=symbol, p_slash_e=score_list[0],value=score_list[1],
-                        momentum_strategy=score_list[2],growth_slash_value1=score_list[3],
-                        small_cap_growth=score_list[4],contrarian=score_list[5],
-                        growth_slash_value2=score_list[6],price_slash_sales=score_list[7])
+            item = GuruItem(symbol=symbol, PE_growth_PL=score_list[0],value_BG=score_list[1],
+                            momentum_strategy_V=score_list[2],growth_value_JO=score_list[3],
+                            small_cap_growth_MF=score_list[4],contrarian_DD=score_list[5],
+                            growth_value_MZ=score_list[6],price_sale_KF=score_list[7])
         else:
             item = GuruItem(symbol=symbol)
         return item
