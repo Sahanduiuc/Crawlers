@@ -27,6 +27,7 @@ scrapy crawl hidemy -o proxies1.csv
 About git
 git clone https://jerryxyx/Crawlers.git
 git add .
+git add -u
 git commit -m "commit"
 git push origin master
 git pull origin master
